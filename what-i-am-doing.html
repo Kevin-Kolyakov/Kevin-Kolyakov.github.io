@@ -1,0 +1,394 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>What I Am Doing - Kevin Kolyakov</title>
+    <link rel="icon" type="image/jpeg" href="profile.jpg">
+    <style>
+      :root {
+        color-scheme: dark;
+        --bg: #050505;
+        --fg: #f7f7f7;
+        --muted: #a7a7a7;
+        --link: #4da3ff;
+        --link-hover: #8cc8ff;
+        --text-font: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, Helvetica, sans-serif;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        background: var(--bg);
+        color: var(--fg);
+        font-family: var(--text-font);
+        font-size: 20px;
+        line-height: 1.4;
+      }
+
+      main {
+        max-width: 880px;
+        margin: 0 auto;
+        padding: 40px 56px 88px;
+      }
+
+      a {
+        color: var(--link);
+        text-decoration: underline;
+        text-decoration-color: color-mix(in srgb, var(--link) 65%, transparent);
+        text-decoration-thickness: 1.5px;
+        text-underline-offset: 4px;
+      }
+
+      a:hover {
+        color: var(--link-hover);
+        text-decoration-color: var(--link-hover);
+      }
+
+      .back-link {
+        display: inline-block;
+        margin-bottom: 22px;
+        font-size: 17px;
+      }
+
+      h1 {
+        margin: 0 0 38px;
+        font-size: clamp(36px, 5vw, 58px);
+        line-height: 1;
+        text-align: center;
+      }
+
+      h2 {
+        margin: 0 0 18px;
+        font-size: 22px;
+        line-height: 1.2;
+        text-align: center;
+      }
+
+      section {
+        margin-top: 44px;
+      }
+
+      .timeline {
+        display: grid;
+        gap: 26px;
+      }
+
+      .role {
+        display: grid;
+        grid-template-columns: 28px minmax(0, 1fr) auto;
+        gap: 12px;
+        align-items: start;
+        padding-bottom: 22px;
+        border-bottom: 1px solid #1f1f1f;
+      }
+
+      .role:last-child {
+        padding-bottom: 0;
+        border-bottom: 0;
+      }
+
+      .logo,
+      .letter-logo {
+        width: 24px;
+        height: 24px;
+        margin-top: 2px;
+        border-radius: 4px;
+        object-fit: contain;
+      }
+
+      .letter-logo {
+        display: inline-grid;
+        place-items: center;
+        color: var(--muted);
+        font-size: 15px;
+        font-weight: 700;
+      }
+
+      .role-title {
+        margin: 0;
+        font-size: 20px;
+        font-weight: 500;
+        line-height: 1.3;
+      }
+
+      .date {
+        color: var(--muted);
+        white-space: nowrap;
+      }
+
+      .role-lines {
+        grid-column: 2 / 4;
+        margin: 6px 0 0;
+        padding-left: 18px;
+        color: var(--fg);
+      }
+
+      .role-lines li {
+        margin: 3px 0;
+        color: var(--fg);
+      }
+
+      .project-list {
+        max-width: 780px;
+        margin: 0 auto;
+        padding-left: 32px;
+        list-style: lower-roman;
+      }
+
+      .project-list > li {
+        margin: 0 0 14px;
+        padding-left: 4px;
+      }
+
+      details {
+        display: block;
+      }
+
+      summary {
+        display: list-item;
+        cursor: pointer;
+        line-height: 1.4;
+      }
+
+      summary::marker {
+        color: var(--muted);
+      }
+
+      .project-name {
+        color: var(--fg);
+      }
+
+      .project-desc {
+        color: var(--muted);
+      }
+
+      .project-note {
+        display: block;
+        max-width: 760px;
+        margin: 12px 0 20px;
+        padding-left: 2px;
+        color: var(--fg);
+        font-size: 18px;
+        line-height: 1.45;
+      }
+
+      .project-note p {
+        margin: 0 0 12px;
+      }
+
+      .project-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 14px;
+        margin: 0 0 12px;
+      }
+
+      .stack {
+        color: var(--muted);
+      }
+
+      strong {
+        color: var(--fg);
+      }
+
+      @media (max-width: 700px) {
+        body {
+          font-size: 18px;
+        }
+
+        main {
+          padding: 28px 24px 72px;
+        }
+
+        .role {
+          grid-template-columns: 26px minmax(0, 1fr);
+        }
+
+        .date {
+          grid-column: 2;
+          margin-top: -2px;
+        }
+
+        .role-lines {
+          grid-column: 2;
+        }
+
+        .project-note {
+          font-size: 17px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <a class="back-link" href="index.html">Back home</a>
+      <h1>What I am doing</h1>
+
+      <section>
+        <h2>Work</h2>
+        <div class="timeline">
+          <article class="role">
+            <img class="logo" src="https://www.google.com/s2/favicons?domain=bmo.com&amp;sz=64" alt="BMO">
+            <h3 class="role-title">Bank of Montreal</h3>
+            <span class="date">May 2026 - Present</span>
+            <ul class="role-lines">
+              <li>DevOps software developer intern working on engineering analytics and CI/CD automation</li>
+              <li>Building CodeScore with TypeScript, JavaScript, AWS Lambda, GitHub Actions, Python, and Docker</li>
+            </ul>
+          </article>
+<!--           
+          <article class="role">
+            <img class="logo" src="craftnova-logo.svg" alt="CraftNova">
+            <h3 class="role-title">CraftNova - JA Startup</h3>
+            <span class="date">Sep 2023 - Jul 2024</span>
+            <ul class="role-lines">
+              <li>Software developer and team lead for a career recommendation web app</li>
+              <li>Led product engineering and built the matching algorithm for user skills and career paths</li>
+            </ul>
+          </article>
+
+          <article class="role">
+            <img class="logo" src="joeyhelps-logo.svg" alt="JoeyHelps">
+            <h3 class="role-title">JoeyHelps - JA Startup</h3>
+            <span class="date">Sep 2022 - Jul 2023</span>
+            <ul class="role-lines">
+              <li>Software developer for a responsive mobile-first web platform</li>
+              <li>Translated Figma designs into polished UI flows and tested them with users</li>
+            </ul>
+          </article> -->
+        </div>
+      </section>
+
+      <section>
+        <h2>Research</h2>
+        <div class="timeline">
+          <article class="role">
+            <img class="logo" src="https://www.google.com/s2/favicons?domain=purdue.edu&amp;sz=64" alt="Purdue">
+            <h3 class="role-title">Purdue University - Duality Lab</h3>
+            <span class="date">Sep 2025 - Present</span>
+            <ul class="role-lines">
+              <li>Building Python tooling for CBMC proof automation, metrics, and verification reports</li>
+              <li>Exploring AI agents that generate and evaluate formal proofs</li>
+            </ul>
+          </article>
+
+          <article class="role">
+            <img class="logo" src="https://www.google.com/s2/favicons?domain=utoronto.ca&amp;sz=64" alt="University of Toronto">
+            <h3 class="role-title">University of Toronto - Modelling &amp; Verification Group</h3>
+            <span class="date">May 2024 - May 2025</span>
+            <ul class="role-lines">
+              <li>Built an IntelliJ IDEA plugin for structured requirement validation and autocomplete</li>
+              <li>First author to LEGOS-SLEEC, accepted at ICSE 2025</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section>
+        <h2>Some projects</h2>
+        <ol class="project-list">
+          <li>
+            <details open>
+              <summary>
+                <span class="project-name">CBMC Metrics</span>
+                <span class="project-desc"> - verification metrics pipeline</span>
+              </summary>
+              <div class="project-note">
+                <p>A Python automation pipeline for running proofs across repositories and generating concise reports for coverage, SAT variables, clauses, preconditions, and errors. Collaborating with the Duality Lab at Purdue Univeristy.</p>
+                <p class="project-links">
+                  <a href="https://github.com/Kevin-Kolyakov/cbmc-metrics">github</a>
+                </p>
+                <p class="stack">stack: Python, CBMC, automation, verification reports</p>
+              </div>
+            </details>
+          </li>
+          <li>
+            <details>
+              <summary>
+                <span class="project-name">LEGOS-SLEEC</span>
+                <span class="project-desc"> - normative requirements tooling <strong>ICSE 2025</strong></span>
+              </summary>
+              <div class="project-note">
+                <p>A research tool for formalizing and analyzing normative requirements, connected to my work with the University of Toronto Modelling &amp; Verification Group.</p>
+                <p class="project-links">
+                  <a href="https://ieeexplore.ieee.org/abstract/document/11024477">paper</a>
+                  <a href="https://github.com/Kevin-Kolyakov/sleec-intellij-plugin">github</a>
+                </p>
+                <p class="stack">stack: Kotlin, Java, IntelliJ IDEA plugins, formal methods</p>
+              </div>
+            </details>
+          </li>
+          <li>
+            <details>
+              <summary>
+                <span class="project-name">NowAndThen</span>
+                <span class="project-desc"> - shared memory map for places <strong>UofTHacks</strong></span>
+              </summary>
+              <div class="project-note">
+                <p>A React Native app for leaving location-anchored comments, photos, and videos, creating a shared memory layer over real places.</p>
+                <p class="project-links">
+                  <a href="https://devpost.com/software/now-then">devpost</a>
+                  <a href="https://github.com/vichekaoeun/uofthacks13">github</a>
+                </p>
+                <p class="stack">stack: React Native, Google Maps API, Node.js, Express, MongoDB</p>
+              </div>
+            </details>
+          </li>
+          <li>
+            <details>
+              <summary>
+                <span class="project-name">Mentral AI</span>
+                <span class="project-desc"> - AI developer feedback system <strong>Hack the North finalist</strong></span>
+              </summary>
+              <div class="project-note">
+                <p>A GitHub analytics pipeline that turns commits and pull requests into AI-powered developer feedback using a Gemini-based RAG system.</p>
+                <p class="project-links">
+                  <a href="https://devpost.com/software/mentor-ai-d29fng">devpost</a>
+                  <a href="https://github.com/Ekanshthegreat/Mentral.AI-hackTheNorth2025">github</a>
+                </p>
+                <p class="stack">stack: TypeScript, Gemini, RAG, VS Code extensions, WebSockets</p>
+              </div>
+            </details>
+          </li>
+          <li>
+            <details>
+              <summary>
+                <span class="project-name">Online Durak</span>
+                <span class="project-desc"> - real-time multiplayer card game</span>
+              </summary>
+              <div class="project-note">
+                <p>A real-time multiplayer card game with live state synchronization for up to four concurrent players.</p>
+                <p class="project-links">
+                  <a href="https://durak-tuex.onrender.com/">site</a>
+                  <a href="https://github.com/Kevin-Kolyakov/durak">github</a>
+                </p>
+                <p class="stack">stack: React, Node.js, Socket.IO</p>
+              </div>
+            </details>
+          </li>
+          <li>
+            <details>
+              <summary>
+                <span class="project-name">Volume Visualizer</span>
+                <span class="project-desc"> - interactive math visualizer for 3D volumes</span>
+              </summary>
+              <div class="project-note">
+                <p>An interactive math tool for visualizing volumes and building geometric intuition through a browser-based interface.</p>
+                <p class="project-links">
+                  <a href="https://volume-visualizer.vercel.app/">site</a>
+                  <a href="https://github.com/bearatron/volume-visualizer">github</a>
+                </p>
+                <p class="stack">stack: web visualization, interactive math, 3D geometry</p>
+              </div>
+            </details>
+          </li>
+        </ol>
+      </section>
+    </main>
+  </body>
+</html>

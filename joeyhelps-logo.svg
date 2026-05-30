@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <rect width="128" height="128" fill="#050505"/>
+  <path d="M37 87c21 19 54 13 66-13" fill="none" stroke="#d8b7ff" stroke-width="8" stroke-linecap="round"/>
+  <path d="M45 38c10-24 23-22 20 7 17-12 28-10 22 9" fill="none" stroke="#d8b7ff" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M54 70c13-17 35-17 40-1-12 22-30 26-40 1Z" fill="#ff93b7"/>
+  <text x="22" y="117" fill="#d8b7ff" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="700">Joey Helps</text>
+</svg>

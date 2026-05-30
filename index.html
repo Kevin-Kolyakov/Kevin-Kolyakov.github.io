@@ -1,0 +1,427 @@
+﻿<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Kevin!</title>
+    <link rel="icon" type="image/jpeg" href="profile.jpg">
+    <style>
+      :root {
+        color-scheme: dark;
+        --bg: #050505;
+        --fg: #f7f7f7;
+        --muted: #a7a7a7;
+        --link: #4da3ff;
+        --link-hover: #8cc8ff;
+        --text-font: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, Helvetica, sans-serif;
+        --ascii-font: "Courier New", Courier, monospace;
+        --page-pad-x: clamp(24px, 5vw, 64px);
+        --page-pad-top: clamp(24px, 4vw, 42px);
+        --icon-box: 38px;
+        --icon-size: 31px;
+        --ascii-size: clamp(2.8px, 0.24vw, 4px);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        background: var(--bg);
+        color: var(--fg);
+        font-family: var(--text-font);
+        font-size: 21px;
+        line-height: 1.35;
+      }
+
+      a {
+        color: var(--link);
+        text-decoration: underline;
+        text-decoration-color: color-mix(in srgb, var(--link) 65%, transparent);
+        text-decoration-thickness: 1.5px;
+        text-underline-offset: 4px;
+      }
+
+      a:hover {
+        color: var(--link-hover);
+        text-decoration-color: var(--link-hover);
+      }
+
+      main {
+        min-height: 100vh;
+        padding: var(--page-pad-top) var(--page-pad-x) 160px;
+      }
+
+      .site-header {
+        margin-bottom: 30px;
+        padding-right: 160px;
+      }
+
+      .content {
+        position: relative;
+        z-index: 1;
+        max-width: 780px;
+        font-family: var(--text-font);
+      }
+
+      .site-title {
+        margin: 0;
+        color: var(--fg);
+        font-size: clamp(30px, 5vw, 56px);
+        font-weight: 800;
+        line-height: 1.2;
+      }
+
+      .social-links {
+        position: fixed;
+        top: var(--page-pad-top);
+        right: var(--page-pad-x);
+        z-index: 10;
+        display: flex;
+        align-items: center;
+        gap: 16px;
+      }
+
+      .social-links a {
+        display: inline-flex;
+        width: var(--icon-box);
+        height: var(--icon-box);
+        align-items: center;
+        justify-content: center;
+        color: var(--fg);
+        text-decoration: none;
+      }
+
+      .social-links svg {
+        width: var(--icon-size);
+        height: var(--icon-size);
+        fill: currentColor;
+      }
+
+      .content p {
+        margin: 0 0 20px;
+        color: var(--fg);
+        font-size: 21px;
+        font-weight: 400;
+        line-height: 1.35;
+      }
+
+      .section {
+        margin-top: 42px;
+      }
+
+      .section h2 {
+        margin: 0 0 18px;
+        font-size: 21px;
+        font-weight: 700;
+        line-height: 1.2;
+      }
+
+      .entry {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 24px;
+        margin-bottom: 22px;
+      }
+
+      .entry-title,
+      .entry-detail {
+        margin: 0;
+      }
+
+      .entry-detail {
+        display: block;
+        margin-left: 30px;
+      }
+
+      .date,
+      .muted {
+        color: var(--muted);
+      }
+
+      .media-list {
+        margin: 0;
+        padding-left: 30px;
+        line-height: 1.5;
+      }
+
+      .gallery {
+        position: fixed;
+        right: 0;
+        bottom: 0;
+        z-index: 0;
+        max-width: none;
+        max-height: none;
+        overflow: visible;
+        pointer-events: none;
+      }
+
+      .ascii-piece {
+        margin: 0;
+      }
+
+      pre {
+        width: max-content;
+        margin: 0;
+        color: var(--fg);
+        font-family: var(--ascii-font);
+        font-size: var(--ascii-size);
+        line-height: var(--ascii-size);
+        white-space: pre;
+      }
+
+      @media (max-width: 980px) {
+        :root {
+          --ascii-size: clamp(2.2px, 0.24vw, 3px);
+        }
+
+        .content {
+          max-width: min(100%, 680px);
+        }
+
+        .gallery {
+          right: 0;
+        }
+      }
+
+      @media (max-width: 700px) {
+        :root {
+          --icon-box: 34px;
+          --icon-size: 28px;
+          --ascii-size: 2px;
+        }
+
+        main {
+          padding-bottom: 120px;
+        }
+
+        .site-header {
+          align-items: flex-start;
+          gap: 18px;
+          margin-bottom: 24px;
+          padding-right: 0;
+        }
+
+        .social-links {
+          gap: 12px;
+          position: static;
+          justify-content: flex-start;
+          margin-bottom: 18px;
+        }
+
+        body,
+        .content p,
+        .section h2,
+        .entry,
+        .media-list {
+          font-size: 18px;
+        }
+
+        .entry {
+          grid-template-columns: 1fr;
+          gap: 2px;
+        }
+
+        .gallery {
+          right: 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <div class="content">
+        <header class="site-header">
+          <h1 class="site-title">Hello there!</h1>
+          <nav class="social-links" aria-label="Social links">
+            <a href="https://github.com/kevin-Kolyakov/" aria-label="GitHub">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.09.68-.22.68-.49 0-.24-.01-1.05-.01-1.91-2.78.62-3.37-1.22-3.37-1.22-.45-1.19-1.11-1.5-1.11-1.5-.91-.64.07-.63.07-.63 1 .07 1.53 1.06 1.53 1.06.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.31.1-2.71 0 0 .84-.28 2.75 1.05A9.35 9.35 0 0 1 12 6.94c.85 0 1.71.12 2.51.35 1.91-1.33 2.75-1.05 2.75-1.05.55 1.4.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.8-4.57 5.06.36.32.68.95.68 1.92 0 1.38-.01 2.49-.01 2.83 0 .27.18.59.69.49A10.08 10.08 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"/>
+              </svg>
+            </a>
+            <a href="https://www.linkedin.com/in/kevin-kolyakov/" aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.95v5.66H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.32 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12Zm1.78 13.02H3.54V9H7.1v11.45ZM22.23 0H1.76C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.76 24h20.47c.97 0 1.77-.77 1.77-1.72V1.72C24 .77 23.2 0 22.23 0Z"/>
+              </svg>
+            </a>
+            <a href="mailto:kkolyakov@uwaterloo.ca" aria-label="Email">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M3 5h18a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Zm9 8.16L4.86 7H4v.77l8 6.91 8-6.91V7h-.86L12 13.16ZM4 17h16V9.98l-7.35 6.35a1 1 0 0 1-1.3 0L4 9.98V17Z"/>
+              </svg>
+            </a>
+          </nav>
+        </header>
+        <p>
+          I am Kevin Kolyakov! I'm a computer science student at the University of Waterloo and have an
+           interest in making useful software that turns complex problems into tool people actually will use.
+        </p>
+        <p>
+           I am currently
+          interning at BMO, collaborating with the Duality Lab at Purdue University,
+          and have previously worked with researchers from the University of Toronto.
+        </p>
+        <p>
+          You can check out <a href="what-i-am-doing.html">what I am doing</a> and
+          <a href="media.html">what media I am interested in</a> recently.
+        </p>
+      </div>
+      <section class="gallery" aria-label="ASCII art gallery">
+        <figure class="ascii-piece">
+          <pre>                                                                                                                                                                                                                                                                                      $ \ t t Q 0
+                                                                                                                                                                                                                                                                                ) f &gt;               n 1   h v                         ~
+                                                                                                                                                                                                                                                                          } { ) 1 ) ( | ( ) ) ) 1 ( | ) } [ { \ t | x     O
+                                                                                                                                                                                                                                                                          ? } { [ } { { ) 1 { } - - - - [ } } _ ~ + ? ) 1       z / ( | t     i
+                                                                                                                                                                                                                                                                        f 1 { ] _ &lt; ~ _ ? ? - ] ] - ] + &lt; _ ? ? ? - + - [ ) t ( } ] ] } 1 | X   i &gt;         C
+                                                                                                                                                                                                                                                                    X ? + + _ - ? + &gt; ~ &lt; ~ &lt; &lt; ~ ~ + ? _ ~ ~ _ ? ? - + _ - [ } } } } } 1 } } (     } / t
+                                                                                                                                                                                                                                                                  ) &lt; &gt; &gt; &gt; &gt; ~ - ? - ~ &lt; ~ ~ ~ ~ &lt; &gt; ~ ~ _ + ~ ~ + &lt; i i i + - + - - + + ~ + - [ } { ] ? - \
+                                                                                                                                                                                                                                                            \   / - &lt; ~ + ~ &lt; &lt; &lt; ~ + &lt; &lt; ~ ~ ~ &lt; ~ ~ ~ _ + + ~ &gt; &lt; &gt; &gt; &gt; &gt; &gt; &gt; + ~ &gt; &gt; &gt; i i i + - - } } _ ? ) 0
+                                                                                                                                                                                                                                                              / ] - - ] _ ~ &lt; &lt; &lt; &lt; &lt; ~ ~ ~ ~ ~ &lt; &lt; &lt; &lt; ~ ~ ~ ~ &lt; &lt; &lt; &lt; &lt; &lt; &lt; &lt; + + + ~ &lt; &lt; &lt; i &lt; _ ? ? [ [ - _ [ f
+                                                                                                                                                                                                                                                        \ $ c ] } } } } ? + - _ + ~ ~ + + + + ~ &lt; i i i &gt; &gt; &lt; &lt; ~ ~ &lt; ~ ~ &lt; &gt; ~ _ + i &lt; ~ ~ ~ ~ &lt; ~ ? - - ] ] ? + } 1
+                                                                                                                                                                                                                                                          ( ] + ? ] - &lt; + + ~ ~ + ~ ~ ~ ~ ~ ~ ~ ~ &gt; ! ! &gt; &gt; &lt; &lt; ~ ~ &lt; &gt; ~ &gt; &lt; i &lt; &lt; i &gt; &gt; &gt; &lt; + &lt; &lt; + - - ] } } &lt; - { \
+                                                                                                                                                                                                                                                      ( ? _ + + + ~ &lt; &gt; ~ ~ &lt; &gt; i &lt; &lt; &gt; &lt; &lt; &lt; &gt; &gt; &lt; &gt; &gt; &gt; &gt; &lt; ~ &lt; ~ _ &lt; ~ &lt; &lt; &lt; i &gt; i i i i i &lt; &gt; i + _ ] ? [ } - ~ } }
+                                                                                                                                                                                                                                                      [ - ~ ~ + &lt; ~ ~ ~ + + + ~ ~ ~ &lt; i &gt; &lt; &gt; &gt; &lt; &lt; &lt; &lt; &lt; &gt; ! &lt; + + _ - ~ &gt; &gt; &lt; i i ! i i i ! i i ! &lt; + ? - ] [ - ~ 1 ] |
+                                                                                                                                                                                                                                                t   \ - - - + ~ &lt; ~ ~ ~ ~ ~ ~ + + + _ &lt; i &lt; &lt; &gt; &gt; &gt; &lt; ~ &lt; i i &gt; &gt; &gt; &lt; &lt; &lt; &lt; &gt; i i i i ! ! ! ! i ! ! &gt; ~ - _ ? 1 - &lt; } - [
+                                                                                                                                                                                                                                              /   | ] ~ ~ ~ &lt; &lt; &lt; &lt; ~ &lt; ~ ~ ~ ~ &lt; &lt; ~ _ &gt; &gt; &lt; &gt; &gt; i &gt; + ~ &gt; &gt; &gt; &gt; &gt; &gt; i i &gt; i i i i ! ! ! ! ! ! ! i i &lt; + - ] { + ~ } ~ [   &lt;
+                                                                                                                                                                                                                                            t   | ? &lt; &lt; &lt; &lt; &lt; &lt; ~ ~ + + ~ &lt; &lt; &lt; &lt; &lt; &lt; ~ &lt; &gt; &gt; &lt; &gt; i i &lt; _ ~ i i &gt; i &gt; i i ! ! ! i i ! ! ! l ! ! ! ! ! &lt; ~ ~ ? ? &lt; [ [ ~ [   \
+                                                                                                                                                                                                                                              j ] - ~ ~ ~ &lt; &lt; + _ + &lt; ~ ~ &lt; &lt; &lt; &lt; &gt; &lt; &lt; ~ &lt; &gt; &gt; &lt; i i &lt; _ + &gt; i i ! i ! ! ! ! ! ! i i ! ! ! ! ! ! ! ! &gt; &lt; &gt; + + ~ } _ &lt; _
+                                                                                                                                                                                                                                        \   k 1 _ ~ ~ &lt; &lt; ~ + + ~ &lt; &lt; ~ &lt; &gt; &gt; i &gt; &lt; &lt; &lt; _ &lt; &gt; i &lt; ~ i i + ~ &gt; ! ! i ! l ! ! ! ! ! ! i i ! ! ! ! ! ! l ! &gt; &lt; &gt; &lt; + + &lt; &lt; - j
+                                                                                                                                                                                                                                        )   \ ? &lt; &gt; &lt; + + _ + &lt; &lt; ~ ~ &lt; ~ &lt; &gt; &gt; &lt; &lt; &gt; _ - + ~ &lt; &lt; _ ~ i i ~ ~ &gt; i ! i i i ! ! ! ! l i i ! ! ! i ! ! l ! i &lt; &lt; &lt; ~ &lt; - &lt; - |   Z
+                                                                                                                                                                                                                                      0   j ) ~ &lt; + _ + + + ~ &lt; ~ &lt; ~ ~ ~ ~ ~ &lt; &lt; &lt; i + ? + ~ + ~ + + ~ &gt; i &gt; &gt; ! ! i i i i ! ! ! ! i i ! i ! i i ! ! ! i i &gt; &lt; &lt; _ _ ~ ? \
+                                                                                                                                                                                                                                      f   t ? &lt; ~ _ _ + + ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ _ + &lt; &gt; _ + + ~ + ~ _ i i i ! ! i i &gt; &gt; i &gt; i i i i &lt; &lt; ! ! i i ! ! ! ! i i &gt; &gt; &lt; &lt; &gt; + { |
+                                                                                                                                                                                                                                          ] + + - _ + ~ ~ ~ ~ ~ ~ &lt; &lt; ~ &lt; ~ ~ + _ + ~ ~ &lt; &lt; &lt; ~ ~ &lt; + _ &lt; ! ! ! i i &gt; &gt; i &lt; ~ + &lt; &lt; ~ ~ &lt; &lt; &gt; &gt; i ! ! ! ! i i i i &lt; &lt; _ )
+                                                                                                                                                                                                                                        $ ~ + _ _ &lt; ~ &lt; &lt; &lt; ~ ~ ~ &lt; ~ ~ &gt; &lt; ~ ~ ~ + + + &lt; &gt; &lt; ~ &lt; &gt; &gt; &lt; + &lt; &gt; i &gt; i &lt; &lt; &lt; ~ _ ] + _ _ + ~ &lt; &gt; i i l ! i i i i i i i i - )
+                                                                                                                                                                                                                                        u ~ ? _ ~ ~ ~ &lt; &lt; ~ ~ ~ &lt; ~ + &lt; i i &lt; &lt; &lt; _ ~ &lt; &lt; &gt; &gt; &gt; &gt; &lt; &gt; i &lt; &lt; &gt; i &gt; &lt; - ] ? ? ? [ - ? ? ? _ ~ &lt; &gt; i ! ! i i i i i i i &lt; _ {
+                                                                                                                                                                                                                                    j   { _ ? _ + ~ &lt; &gt; &lt; ~ ~ ~ _ - + &gt; &lt; ~ _ _ _ - ? ? - _ _ ~ ~ ~ ~ &gt; &lt; &lt; + _ ? [ 1 \ | / \ | | / f \ 1 1 } _ &lt; &gt; ! ! i i i i i i &lt; ~ _ ]
+                                                                                                                                                                                                                                    \   ? + + _ ~ &gt; &lt; &lt; &lt; ~ ~ - ? _ ~ &gt; - } 1 ) ) 1 { { ] ] ? - - ? ? - ? } ( | f t j x n v v n v c c u x r / { _ i i ! i i ! i ! ! &lt; &gt; &lt; t ,
+                                                                                                                                                                                                                                      $ _ + + _ ~ &gt; ~ &gt; i &gt; + _ ~ + _ ] } 1 ( \ / / \ | ( 1 [ [ ] [ ] [ | j r r v c X Y Y Y U Y X z z z v c n r \ _ ! ! i i ! &gt; i ! &gt; &lt; ~ 1   f
+                                                                                                                                                                                                                                      / &lt; _ ~ ~ + &lt; &lt; &gt; ~ ~ ~ &gt; ~ - { / | | / f f f j x x n x j r j x v X X X X Y U J U U J U U U Y X z c v v u n f ] ! i i i i &gt; ! ! i ~ + |
+                                                                                                                                                                                                                                  j   { + ~ ~ + + ~ ~ ~ ~ ~ &lt; &lt; + ] / t f j n u u v u u v v v u v c Y U U U J J U U U U U U U U Y Y Y X c c c u n n | &lt; i i i i &gt; i ! ! ! &lt; ?
+                                                                                                                                                                                                                                  t   ] ? _ + ~ + _ ~ ~ &lt; &lt; &gt; &lt; _ { t j r n v v c X X X X Y c c z X Y U U U U U U U Y U U U U U Y Y Y X X X z v v n t - i i ! i i &gt; &lt; ! ! &lt; _ )
+                                                                                                                                                                                                                                  t   { ] ~ &lt; ~ + ~ &lt; ~ &lt; &gt; ~ _ [ | j n u v c X X X Y Y Y Y Y X Y U U U U U U U Y U U U U U U U Y Y Y Y Y X X z v v r } &gt; ! ! i i i i i i ~ ? }
+                                                                                                                                                                                                                                  t   } - ~ + _ _ &lt; &lt; &lt; &lt; &lt; + ? 1 \ n v v c z X z X Y Y Y Y Y U U U U Y U U U U U U U U U U U Y Y Y Y U Y Y X X z v x ( _ i i &lt; &gt; ! i i &lt; ~ ] { [ \
+                                                                                                                                                                                                                                  t   ] _ + _ ~ &lt; &lt; &lt; &lt; &lt; &gt; &lt; - } j c v c z X X X X X Y Y Y Y U U U U U U U U U U U U U U Y X Y Y Y Y Y Y Y X X X z v \ _ &gt; &gt; &lt; &lt; i i i &lt; ~ - } [ [ |
+                                                                                                                                                                                                                                  t   } ~ ~ ~ &lt; &lt; &lt; ~ &gt; &lt; &lt; ~ ] \ v z c z z X X X X X X X X X X Y Y U U U U U U Y U U U Y Y X Y Y X Y X Y Y Y X X z v t - &lt; &lt; ~ &lt; &lt; &lt; i i &gt; - ? &lt; - 1
+                                                                                                                                                                                                                                  t   \ ~ i &lt; ~ ~ ~ &lt; &gt; _ &lt; + { / c z X X z X X z X X X z X X X X Y Y Y U U U U U Y Y Y Y Y Y X X X X X Y Y X Y Y X c r [ &lt; ~ + &gt; &lt; &lt; i ! i ] 1   $ |
+                                                                                                                                                                                                                                  t   | ~ &lt; ~ ~ ~ ~ &lt; &lt; + &lt; _ } f z X X X z z X X X X X X X X X X X Y Y Y Y Y Y Y X X Y X X z z X X X X X X X X Y X X x } &lt; + + &gt; ~ &lt; ! l ! - } 1
+                                                                                                                                                                                                                                  t   | + &lt; &lt; &lt; ~ ~ &lt; ~ + ~ - 1 x X X X X c z X X Y X Y Y Y X X Y Y X X X X X X z X z z z z z z z X X X Y X X X Y Y Y c ) &lt; + _ ~ + &lt; ! ! _ { ? C
+                                                                                                                                                                                                                                  t   ) ~ &lt; + + ~ ~ &lt; ~ _ _ ? ( v X X X X z X Y Y Y Y U U U U U Y Y Y X X z z X z X z z z X X X X X Y Y Y Y X X X X Y Y \ + ~ ~ + &lt; ~ i ~ } |   Q
+                                                                                                                                                                                                                                  t   ( &lt; + _ ~ ~ &lt; &lt; ~ - ? ? / c z X X X z X Y Y U U U U J U U U Y Y Y X X X X X z c X X X Y X X Y Y U U Y X X X Y X Y f ~ ~ ~ + &lt; _ &gt; &lt; } _
+                                                                                                                                                                                                                                  O   ) &gt; + + ~ + &lt; &lt; &lt; _ _ ] j c z z z z X Y Y Y U J J J U U U U Y U U Y Y Y Y X X X Y Y Y X X Y U U U U U Y Y Y X Y U u - &lt; ~ + &lt; + ~ &gt; j Q
+                                                                                                                                                                                                                                      [ &gt; + + ~ ~ &lt; &lt; &lt; ~ ~ 1 u c z z z z X X X U U U U C U U J U J C J U U Y Y Y Y Y U U U Y J U U Y U U Y Y Y X X Y U z ] &lt; &lt; &lt; i &lt; ~ ?
+                                                                                                                                    $ C 0                                                                                             f &lt; + + &lt; ~ ~ &lt; &gt; &gt; + | u c z X z z X Y U U U C C C L L J J C C J J U U U U U Y J J U U U U J J J U Y Y Y U U Y U Y [ i &gt; &gt; l &gt; ~ ]
+                                                                                                                                  J                                                                                                   Q ~ + ~ i &lt; ~ &lt; i i - j v c X c r j r u v v c X U C L L C C C C C J J J J U U J C C J z Y U Y U C U Y Y X z X U U U ) ! &gt; i ! &lt; &lt; /   0
+                                                                                                                                    q J Q                                                                                             c ~ ~ ~ i ~ &lt; &lt; &gt; &lt; { n v z n 1 { ) 1 ) 1 ) ( \ \ f r n Y C L L C J J U J J J C L C c r c x t f | \ | t t | \ f c C \ ! l i &gt; &lt; i f   0
+                                                                                                                              { a J z n v c p {                                                                                   !   Y &lt; + + i + &lt; i ! ~ \ v n f 1 { | \ { [ ? - ~ + ? [ } { { n U U J J C J J C J J C v / j f ( ) [ } } [ ] 1 1 ) 1 ( X j ! I i &gt; &gt; ! /
+                                                                                                                            L   Y X c X z v c   C                                                                                 :   v &lt; ~ &lt; &gt; ~ &gt; i ! ? r n | [ 1 1 ( ) ] + ~ + ~ ~ ~ + ] | 1 ) u c z X U U U J J z Y / ( j \ ( [ ? [ ] ? ? - ? ] { } ) f i I ! &lt; &gt; I /
+                                                                                                                              o c X z Y X c c Q   L                                                                               $   n ~ &lt; i &gt; ~ i ! ! | z / | f r v c z X c r t 1 ? _ &lt; i [ ) | f f x u X Y Y Y c u n / \ | ( } - - - _ + _ ? } 1 | | 1 / ? ! i &lt; i &gt; $
+                                                                                                            M c c M       \   Q u X z X X z c C   Q                   J M a L                                                         c ~ &lt; &gt; &lt; ~ i ! &gt; x n \ x c z X U J C C L C C X r f ) ) ) \ f f x v X X Y Y c n x j \ ( 1 ? ] ] 1 \ j v Y X z z n f / - &gt; i i i &gt;   !
+                                                                                                                          |   u u X z U X X X X   1                 $         U                                                       O &lt; ~ i &gt; ~ i ; _ v f t n c X Y Y Y Y J J Q Q Q C C J z n f t j r u Y Y U Y X v r r j j j r c X J L C L C U Y Y z v j - ~ i ! &lt; -   f
+                                                                                                            Q Y z J       {   k n X z Y z X X c w   1             $   C L U Y   $                                                     c ~ &lt; i &lt; &gt; ! ; 1 c x v c z X c n u v u r f j f j x v U Y c j f r v Y U J U X u j f u z z c z X U U X z z X Y Y X z v ~ i &gt; i i 1   O
+                                                                                                    )   # U c v v v v B - $   Z v Y c X z X z u 0   $           X   C X X z u c   $                                               z   x ~ &lt; &gt; ~ i l ! f z c c c X v x v j [ - _ &gt; &gt; _ ( ( ( f z J u / j n c z Y Y v r j u n f \ | | \ / / r v v n u X z X z &lt; l i i i Z
+                                                                                                    $   J z v c v v u u   x   c v Y z X z z c n L   a         $   0 Y X X X c u L   J                                             Q   j ~ &lt; &gt; ~ ! l _ u c Y z z v r j } ] f | - ~ ? + v U | | / u u \ / x c v X X n j n r | ) | / { _ ~ ~ + ] | u r v X z U - l i &gt; &gt; $
+                                                                                                      o z c c X X v v n $     * z Y z X z X c v J   a         a   L c c Y U z v J   a                                             C   t ? &gt; &lt; i l ! } z c U Y z x \ [ - \ J x - ] | _ c w v | \ r r | \ x u c z X v r u j | \ v X ) &gt; ? - - r \ - t n z c C { ; i &lt; ~
+                                                                                                  \   0 u z v z X u u r k   L   X Y z X z z c v U   c         c   L X X Y Y z c Y   $                                           Q   / / ) ~ &gt; ! ! i | X z Y U z j / x u t t / 1 } } { j x / ) } t j ( \ x u c v X z r n \ { n Q 0 | _ t ] ] J U - ~ t z c C / I i I !   ~
+                                                                                                  |   w u c v X X v n x #   L   J Y z X X z z c C   C         L   U U Y Y X z c X   1                                           t   j f f _ ! ! ! &gt; x c X J U c u v c c z c v v c c n x x r n v x / ( / n u u n c c r j | 1 | j c / ] ? - 1 n \ 1 1 | n v L j ; &gt; ! $
+                                                                                                  \   M u c u c v x n n p   Q   J Y z X X X X z J   $           b X Y X X X X X X   \                                           \   X t x } &lt; i l + c v X U z v c z z c X z U C J U Y v n n v n f / \ f r n c v c c x j r r / \ t r j j t t \ f u c u n z C c ! ! _
+                                                                              C z O                   # u c v v u u u n L   c   J Y X X X Y X z c           $   0 z U Y Y X X X z                                               $   0 r t ( \ [ ; 1 X v X X z X Y U Y X z z c z c c c c c v x r j t \ j x n v v v c n j r x x j f x v z X X c X X z z c c J U ~ i X   O
+                                                                            $                         $ z z v c c c u x X   p   J Y X Y Y Y X z u 8         J   0 z U Y Y X X X v Y                                               - $ c j \ x ) ! t z v c z z Y U J U C L L L C U U J U U Y X u f t t j r n n n v v n r x z c v n n x x x n n n n n u v c X J _ + U   /
+                                                                              Y X Y                     X X c z z z v x Y   q   L C Y Y Y U J U n d   $     *   0 z Y Y Y X X X u X                                               u   U n f x ) i x c c c c X Y U U U J U U J U U Y J U U U u f t f f f j x n u n v v n r u U J U U U Y X z X Y Y Y X z z z C { &gt; L   O
+                                                                          * Y n j x u q             |   J X c z c z v v U   #   Q L J J U L C U v J   $     o   C c Y X X Y z Y c X                                               C   0 n j n { &gt; n v v c v X X Y U U Y z z X Y U U U J Y v f t f f f f j x u v v z c n n x n Y J U J U U U Y X Y Y Y X z X C j ! $
+                                                                      L   L v n x j x z   z         Q   U X c z c z c v X   Y   0 L J C C L C J u c   C     o   L X Y Y X X X Y X   1                                             |   J f x u } &lt; n v u c c X X Y Y U Y X X X Y Y U U Y v r f f t t f f j x n v c c z v x n x n c X U Y X Y X X X c z Y X X U v ~
+                                                                    (   h X u n u n r u #   (       Q   U z v c z z c u X   p   0 Q J J C C C U c U   c     *   C Y Y Y z X X Y J   $                                             $   U t n n ] &gt; r v u u c c c X X Y X X X X X z c X c n r j \ \ t f f j n v c z c v v x r n v v c z z X z X z X z X X X X Y X 1   0
+                                                                    |   U x c v v u n x Q   Q       z   Y c u c z z c v U   q   Q Q C C U C C U z Y   o     1   J J U U X X z X C   C                                                 k n u r ? i f u u u u c z z z X Y X z z z z X z z z r \ ( t f t f x u c Y X z v v u r j u X z X z z z c z X Y Y Y Y X X Y \   L
+                                                                    |   U u v v c v n n Q   z       z   J X v X z z z X U   *   C Q C C C C L U X U   v       k J L L L L J X z C   L                                               o   z v f { i f v u u n v c c z Y Y X z c z z X Y Y c t ( t f j r x c X X Y Y X c v u n j r X Y X X c c z z X Y U Y Y z X Y r   L
+                                                                    |   L u c u v u n c U   U       z   C U X X X X X X z   ] C J L C J J C L Y Y X   $   J   C X L Q 0 0 Q U X J   L                                               *   J u | | ~ \ v n n n v c z z X Y Y X c c c X Y X n ) / j j x x u v z Y U U Y z c c v n r u Y X X z z z z Y U U U Y X z U c   L
+                                                                    \   W n c v v v u v v 0   $     c   J U Y Y Y X X X v &amp;   U Y L C J Y J L U X v p   $ d   C X Q 0 0 0 Q U Y C   L                                               L   Y x ) t ] ( u n n n v c z X Y Y Y z c v v c z z j 1 j j j x x n r n z J C Y c v v v v u x X X z z z z c Y U U Y U Y c U C   L
+                                                                        $ c z c v c v u x Q   |     #   C U Y Y Y Y X X x U   Y U J U U Y Y C U z x Y   u w   C Y L 0 0 0 L Y Y L   L                                               z   X j } 1 ? | u n n n u c z X Y X X c c c v c c v j ( f x r f / t r r u z U z n x x u v u u z X X c c z c X U J U Y Y c U C   L
+                                                                      C   c c c c c c v v z   z     c   C U U Y Y Y Y X r Y   X U Y Y U Y Y U Y z x Y   z k   L J L Q Q Q C J U J   C                                               v   z f { [ [ / n n n u v c z z z z c v c c c z c n x \ | f / } + ~ [ t r x n n f | | \ r x n z X Y X c c c X U U U U Y X Y U   Q
+                                                                      z   C v v c c c c z u O       Q   J U U Y Y Y Y X v z   z Y X Y U Y U U X c x X   x z   J 0 L C C L C U Y X   $                                               $   J r x x 1 ( x n n n u c c c z v v c v c v v u x j t ( 1 } 1 | | ) ( f f r j / \ | 1 | / r c X X z z c z X Y Y U Y Y X X 0   z
+                                                                      v   C n v c z c c c n O   $   L   U Y U Y X X Y Y c n ! z J Y X Y Y Y Y z v x z   k   v X Q C C C C J z X X   $                                               1   m r j u t | r n n u v c c c z v v c v v v v x j f t \ ( ( ( t t t / f j f f f j t \ t t j v X X v u c c c X Y Y X Y Y z Q   Q
+                                                                      $   J u v z X c c c v L   v   C   C U U Y X X X Y v f f c U U Y Y Y Y U z c x Y   q   X c U U J J J J z z X   $                                                 C   c n x n t j n n u v c c c c c v v u u v n j / \ / \ | / \ f f t t f f f t t f f f f f r u v z z n v u v z X z X X U c C   L
+                                                                        $   X X X X X z X X U   Y   $   C Y U U Y Y X Y c f ) X c Y Y Y Y U U z c n U   Y   U X U U Y U U U c v Y   C                                                 L   Y u v x t f n n u v c c c c v n n n n x j t t t \ / / t t f r j r u n j f t f f f f t j x x u c v u n v v z X X z Y z C   C
+                                                                        v   C v X U Y X Y Y c m   $ c   C X Y Y X Y X z v f ( Y z Y Y Y U U Y X v x U   k   J U U J Y X X X v n X   z                                                   C   u x n r f x u n u v c c c c j x n n f / f / / t / / j f / j j j x n x x j f f / / f j x f j u c u x u v c X X z Y z C   $
+                                                                        z   L v X Y U U U Y n z   f x   C X z X X Y X c v j f c c U U U U U U z v n *   v   Y J U U X X v n u r X   z                                                     J * x v u j r u u u u v c z v t x x r f t j f t f f f j j j x r t \ / f j n r r j j r j r f j x u n x x u v z z z Y c Q   $
+                                                                        C   0 v X U U U U U c n L   C   C U Y U Y Y Y z u f f z z U Y J J U U z v v   J   z X C U Y c X c u n j U   z                                                         Q u x t x u v u u v c z x t x n n x j t f f f f j t f j r n x x x n u n x x x r x x x x n n n n r f x v c z c U X b
+                                                                        $   Q x X U U U U U z r c   m   C U Y U Y J J Y v t / U c Y X Y U U Y z u z   q   X X J Y X z c u u n j Y   Q                                                             1 j n u v v u u c X x j n n n f / \ \ | | \ | ( | / \ t j x x x r j j j j j r x r r n u v u x / x v c z c U J   h
+                                                                        1   v n z Y U U U U z u v   z   C Y U U U J C J c f 1 Y v X X X U U Y z n u   p   U X U Y Y X c n n n f z   L                                                           u   x r n v v u u v Y x x u r \ ) 1 1 ) ( ( ) ( ( ) | | / t / / / \ \ | | / / t f t / t j r x u t r c c c z U J   h
+                                                                          } o u z X Y Y Y Y X v u X $   C Y U J J J C C Y f   c v X X z Y U Y z u v   z   Y J U Y Y Y c u n n t v   C                                                           Q   n x u v v u x n Y u x n \ [ ? - ] } { 1 1 1 ( 1 { ) ) | \ | ) ) ) ) ) ) 1 ) ( [ { ( ( f x v f n X z z z z L   k
+                                                                          v   c c z Y Y Y Y Y z x z     C Y U J U J C C J x c X u v c v c Y Y X r j   U z c U U Y Y Y z n n x f c   $                                                             C   n v v v u n n z Y u x / } ~ + ? \ / / u \ u j f U z t t x Y Y \ r r \ 1 1 1 i + { } f x n j z z c v X z 0   $
+                                                                          C   Y x c X X U U U z x Y     U X U J Y U C C J x   u n n c c v X X v f \ Y   z c Y Y Y Y Y X v n r \ X   $                                                             /   u n u v n n x u Y c n f \ - &gt; ! 1 v x Y n U X u m w C z 0 q O x C U c z j { i + - \ x n n x X z v v Y U   k
+                                                                          $   J n z X X Y U J X x v     U c Y Y Y Y Y Y U u n x u u c c v v c u f f   v v Y Y Y Y Y X c u x j / $ ?                                                               O   v f x v u n n n X X v x f \ [ _ &lt; ) t X X Y C c 0 m w J m m O Y 0 U U U ) I + } ) r x n v c X c u c c C   Q
+                                                                            $   c z X Y U J C U v v     U c X Y X z u v c x r x v c v v v v v v u v c v n X X z Y Y Y v n r f r   )                                                                   Y r x x v u n x c X c n j f \ [ [ ? _ n v c L U Q Z q L w m 0 C L v U / , l 1 ) f x r u c z c c v X X a [
+                                                                            v   U z X J C C J J c x     c v c c v v u n u n u n u v v c v u n u n u c v n c z z X X Y c u x j Y   $                                                                 |   r x x u u n x v X z u x f j | } 1 ? { } / X Y Q 0 Z J 0 Q L X z f / &lt; ~ 1 ) / x r r v z z c v c c z   C
+                                                                            C   U u X U C J U J z j c p v n x v v v u u v v u v v c c c c u n n n n n u v v c c c v v v n x x   U                                                                   $   c j x n u n n n c z v n r j r ) } ) } [ [ } f u X U u 0 z Q u ( 1 ? } ( ( / x r x u c X z c v X c c }
+                                                                            $   X u Y J J J U Y c j r   x n x n u v v v u c c c z X X z z c v u v u u u n v c z c v n x j t v   Q                                                                     )   r j r n v n x u c v u x f j f ) 1 ) 1 1 { } } 1 | ) f 1 ( { } 1 ( | | | r x r x v z z c v c c U   C
+                                                                              M   z Y Y U Y X X c n n c c u n u u u u v c z z z z c c z z c c v v v v c u v v c z v u n r f 0   |                               Q z / O                               O   x / x x n n n x v v u x f f r / ) ) ) ( | \ / \ ( ) ) ( ( | ( ( ( ( ( f x x r u c c X c v c v   v
+                                                                              L   Y X Y Y Y z X X c v c v u v v v u v c z X X z X Y X c c c c c c z X X z z c v c v u v x j                                 $ Y                                           Y t j r x n n x u u u n x r r f / ( ) ) | \ / / / t / / / / \ | | | / r x x x v c c z u z v U U
+                                                                              z   Y z Y Y U X X c v v n u v v c c z X X Y Y Y Y Y Y Y X z z z z z X Y X c X X z c u n x j n   O                           Y     C X c c                                   X j j t r n n x r n u n n x r j r f t \ | \ \ / j r r j f f / \ | f x x x x x v z z c u u c   v
+                                                                              z   U c z Y Y Y z v u u u c c z X X X X X Y Y Y Y U Y Y X X X z z X X Y X X X z X z v n j f n   z                         J   O u r j f r r   $                           L   x x f \ x n x j x n n x x r j j j j j j f t f r j r x j t f f j x r r x r x c c c u c u L }
+                                                                              z   Y c c z X z c c c v z X X X Y Y Y Y Y Y Y Y Y U Y X X Y X X X Y Y Y Y Y X X X z v x j / u   Q                       C   X r r r j r x j n   C                         L   u x j / j u n j j u n x x r j j r r r n n x x x n x x r x r j x r j r x x u z c v u u X   L
+                                                                              Q   U c c c z z c z z z X X X Y U U Y Y Y Y Y Y Y U U U Y Y Y Y Y Y Y Y U U X Y X z v x j j U   |                     J   c x x r r x x x r n   /                         Q   u x j t f r n j t n n r x r r r r r r x x x r j j j x x r f f r r x x x n c z v u c x c   |
+                                                                              U   z X c z z X X z X X X X X Y U U Y Y U U U Y Y U U U Y Y Y Y Y Y U Y U Y X Y Y z v n j r                         U   Y x x x n x x x r r X   X                         t   n j j f / t x x t j n j x x r j j j x x x n j t t t n r r r r r r x x x u c c v u v r r
+                                                                              - $ n X c z X Y Y X X X X X Y U U U U Y U U U U U U Y Y Y Y X Y Y Y Y U U U Y U Y c v u t x   f                   1 Y Y j x n u n n n n n j m   (                         t   n j r r \ / r x f / r x r r x x r r x x j r t f f j r j x x x j r x x n v c v n n v n X   $
+                                                                            $   C r c c z X Y Y Y Y Y Y U U U U U J U U J J U U Y X X z X Y U U U U U Y J J U Y c u n / u   Q                   U   r r n u u x u v u x c   C                           C   n f r x f / t f j f t r r j j x n r j x r j t t f f t t f t f j x n n n v v u n n u u X   C
+                                                                            $   z n X X Y Y Y U U Y Y Y J J J U U U U J C J U U X Y X X Y U U U U U Y U U Y Y Y z v u | v   0                 C   c x x n u n v c c n x   C                             $   n f n n r t / / f f / t j r r x x x j x r t r j j t t t t j j j x n x n u n n n n u u X   z
+                                                                            C   J n z Y Y Y U Y Y U U J C J J U U U U J C U U U U U Y U J J U U C U z X c v v z c v u \ $                     [ o x x x n n v v z c r v   Q                                 ) r n x n j / \ \ t \ \ f x r r n r r x x x n r x r r r f f r r n u x n x r x n u v v X   z
+                                                                            z   J c c Y Y Y U U X U J J J C C J J J U J J J J J J J J C C J U X Y z c z c c z z c v u t   C                 U   x f j x n n v z z n r   \                                 (   u u n n x f / / \ / | \ r x r x x x n x u n r j r r x x j r n v c n x f f x u v v c X   c
+                                                                            z   X c X Y Y Y U Y U U U U J C L C C J U J J C C C C J C C J J Y c z c c z X X X z c v u n   t                 $ j x x j x n n c X v j v   (                                 0   n n n n n x / t / | \ | / j r x u n x n n x x x r r x x r r x u u x j f j u c c v z X   a
+                                                                            z   U c X Y U J J U U Y X U J L L C C Y J J J J J C L C J J U U Y z z c c z z X Y X c v u v   t               v   n r t r u n v z c n n   L                                   t   r r n v v n j t t \ \ \ ( t j r n v x x n u n j j x r f x x x x x r j j x v c v c z Y   #
+                                                                            z   U z X U C L L C U U U Y J C C L C C C C J U J C C C J J U Y Y z c c X Y X X X c z z u u   t               C   v n / x u u c c c r c   |                                   t   x r n u v u x f t t / \ | \ / f f x n x u n x n u x x n n r j j j f j x u u v c v z c
+                                                                            z   Y X Y U J C C J U U U U J C C L L C C C J U J J J C C J U Y z c z X Y Y Y X X c v v u n   t             Y   c u j t n v v X c c r v   $                                   t   x j x v v v x j t t / / / | | / f f x v u v v n c v v x r j j t / j r u v u u c v X c r
+                                                                            z   Y X X U J J U U U U U Y U C C L L C C C C J J C C C C J Y X c X X Y Y Y Y X z z x x u x   0           $   0 n x f f u v v c c v n O                                       Q   x j x u n u n r f f t / / / \ ( \ f j r n n u n u u x r j f / t j r n v c c c c v X c Y   $
+                                                                            O   X X Y U U U U U Y U U U U J C L L L C C J J J C C C J U Y X z Y Y X Y Y X X z c v f j j )             U   v n r j x v v v v v c u   v                                     L   r j n u u u n r j f f f t t t \ | | / / f j x r j f t / \ \ / j r x v c c c c c c c v n   X
+                                                                                v X Y U U U U Y Y U Y Y Y J C L L L C U J J J C C J U U Y X X Y Y X Y X X c v v c v t ( f   C       C   u n n u r u v c v v z n n   $                                     0 , f f n u u u n j f f f j j t t f f / | | | | | \ | | ) ( \ f r r x u v v c c c c c c u c $ Y
+                                                                              % u z Y U U U U U U U U Y Y U C C L C J C C J U J J U U Y X z Y U U Y X X z c c v n c v | \ $ 1     |   z x u v v n c X c c z c n   U                                 &gt; j       n f n n v u n r f f f f r j f f f f t / / / \ | \ | \ f j j r n u v c c c c c c c c c n   c 1 Q
+                                                                          $   q x c Y U U U J J Y U J U Y J C J C C C C C J U U U U U Y X X Y J J Y z X z c c c u n c c |   Y C Y   v x u z c z X X X X z Y u ] Y                               Z         j + - t r n u v u x j f f j r r x j j j j f / f / t f r j r r x n v v c z c v c c v c c z n \       C
+                                                                          $   C n z Y U U U U U Y Y U U Y U J J C C C C C J J U U J U Y Y Y Y U J Y z z c c c c c v n X X x       n x n v z X Y Y Y Y X U c t   $                         O /       ( - ~ { - } j f x u v u x j j j r r x n n n x r j f f j r r x x x n n u v u v c c c c c c c c v x r [ &lt; v   /
+                                                                          $   c n z Y U J U U U Y Y X Y U U J J J J C J C J J U U C U X Y Y Y Y Y z z z c c c z X v x n U U Y c r j n u c X z Y Y Y Y Y X u   h                     $ /       U \ 1 } _ } ( ? f f f x u v v n j f j j r n n n u u u n v v n n n n n u n n v v v v v c c c c c c c v n u t + \ n       0 0
+                                                                          $   X n z Y U U U U U Y X X Y U U J J U J C C C J U J J J U Y Y Y Y X X c c c c z z z c v n j r v r t j x v c z Y Y U J Y Y U c - U                     C       t \ ( 1 ) ] ? | [ ? r t f r u v v u x f j j j n n n v v c u v c v v v v u u n u v v v c v v c c c c c v u n x x } | / f u
+                                                                          C   J n z X Y U Y U U U Y X Y U U U U U U J C C J U U U U Y Y X X X z c c c v v c c z z c u f / \ \ / r v z c z U J U U U Y c x   C                 Q     / ( ( \ \ \ ) } - { | ] } x / f r n v v v n t f j r n u c c c c z c c c c v v v v u u v c c c z z z c c c v u n n n x } 1 | ( ) \ f j     O     O f &gt;
+                                                                          L   J n c X Y Y U U U Y X Y Y Y U U U U J C C C J U U J Y Y Y X z c v c c v v v c c z z z v f / t t x v z z z z U C J U U z u   C             ) Q C   } \ | ( \ | ) ) } [ - ) ( ] { n f t f n u v v n r j j j x n v c z c z c z c c v v v v v v v v c X z z z c c v v u n n u x } 1 ) | ) ) | 1 ) x
+                                                                          L   U n c U U U U U U Y X Y Y Y Y U U U J J J C J U U U Y X z c c v v v v u v v v v c c c c r f j x c c z z z X U J J U U c \ U             0       t ( | ( 1 ( ( ( ) ) [ ? 1 ( ] ) n j f j n u v v u r j f j j x u z z z X z X c c v v v v v v v v c z z c z c v v v u n n c j [ ) ) ( 1 } { 1 ) } ] x ? ? } )     j
+                                                                          L   U n c X U U J U U Y X X Y X Y U U U U J J J U U Y X z z v v v v u n n n n n n n u v v u n n n u v u z X z Y U C C Y z v   v         r     \ ( \ | ( | 1 { ) 1 ) ( ) ] [ ) ( [ ) n j f f x u v v v n r f j j j n v v c Y z v c v v v v v v v c c z z z c c c v v v u n v c 1 } ) ) ( ) 1 [ } ) | [ _ ? } } { ) \     O
+                                                                          L   z u v U U U U U U Y X Y X X Y U U U U J J U Y Y X z c v v v u u n n n x x n n n u n n u n x n c v c z X X Y U J J Y c   X               j | | \ ) 1 ( 1 1 ) { 1 ( ) [ [ ) ) } ( n r j t r u v v v n x j j j j x x v c X c n u u u v u v v v z z z z z c c v v v v n n c r ? 1 ) ( | ( } ] { 1 1 1 [ } 1 ] { 1 1 1 (     U             0 0   &gt; f O
+                                                                          L   c v z U J U Y U U Y Y Y X Y U U U U U U U U X X z c v n n n n n x x n x x n x n u n u u u n n c c v c X Y U U U U v n   $ v ( 1 ] f x / 1 | ( ) 1 1 ) { 1 ) ) ) ( ) [ [ ) ) { ) u x r f f n v v v n n x f j j r x n v c n u n n n u v v v c z z z z z z c v v v v v n z t ] ) ) ( ( ( ] ] 1 ) 1 } ) ( ] - } { 1 1 1 ) r                               f O
+                                                                          L   z v X Y Y U U U U Y X Y Y U U U Y U U U Y X z z c u n n x x n n n n n n n u n n u u v v v n n v v c X Y U J U Y X ( } [ [ ? 1 } ] ) 1 1 } 1 ) ) ) ( ( { 1 1 1 ) ) ( } [ ( ) } 1 u x r j f x c v v v u n r r j j r n v u n n n n u u v c z z z X z z z c c u u v v v v c ) { ) ) ( ( ) ? { 1 ( ) ( ) } - ] } } [ } { ] { { /   i   Y   \ ( ) 1 } [ (           r
+                                                                          L   X v z Y Y U U Y Y Y X U U Y U U Y Y U U X z z c u n n n n n n n n u u n u v u v v v v v u n n n v Y J U U U X Y x [ } } { { ( | | ) [ [ { 1 ) ) 1 ( ( { 1 1 ) ) ) ( } [ ) ) 1 { n n x r f r v v c c u n x r j j j j u u n n n u v v c z z z z X z c c v v u u v v v c r } 1 ) ) ) | [ ? { ) ( ( ) [ ? ] [ { } ] ? _ - - [ [ f   ?   x ) | ( | ( } { ) ) 1 )       f
+                                                                          L   Y v z Y U U U U U Y X Y Y Y Y U X X U X z c c v n n n n n n n n n u u u u v v v v v u v v v v u X J J Y U X z X \ [ [ [ [ } ) ) ) { [ [ } 1 1 ) { ( ) } { 1 ) ) ) ) { [ ) 1 1 } j v x r j j v c c z v n x x r x r j x x n n u u u v c z z z X X X z c c v v v c c c Y \ } ) 1 ) ) ) - [ { | | ( [ ? [ [ [ { } ] ? _ + ~ - { - [   f ( | ) ( ( ) ) ( ( ) } { 1 | X
+                                                                          L   c u z Y U U U U Y Y Y Y Y Y X Y X X X z c c v u u u u u u v u u v v v v v v v c v v v v X X c z U U Y z X z z x { } } [ [ [ { ( ( 1 ] } } 1 1 1 1 | ) } } 1 ) ) ) ( { [ ) ) ) } \ v n r j j x v c z c v n x n n x x n n u u u v c c c z z X X X X z z c v v v c c X v 1 1 ) ) ) ( { - { ) \ ) 1 ] [ [ } } } ] ] ? _ _ - ] [ - + ( ) ) { 1 ) 1 1 ) ) ( | | | | 1 { 1 C , $
+                                                                          L   c u z Y Y U U Y Y Y Y Y Y Y X X X X X z c c v u n u u u u v v v v c c c c v u c c c c c z Y c X X X X z z c v ( [ } } } [ [ } ) | 1 [ [ } 1 1 1 1 | ) { { { ) ) ) | 1 ? ) ) ) 1 { u u x j j x u c z z c v u u u u u u u v v v c c z z z z X X X X X c v v v v v c U / } ) 1 ) ( ( ] } ) | \ { [ } 1 [ } [ [ ] ? - _ _ ? ] ] - [ | ) 1 1 1 ) ) ) ) ) ( ) ( ( | ( { { \   U ( C $
+                                                                          L   X u z X Y U Y X X X X X X z X X X X z z c v v v u u u u n v v c c c c c v v c c v c v c z z v X X z z z z X f ? } } [ [ [ } } 1 | 1 [ [ } 1 1 1 ) ( ) } } } ) ( ( | ) ] 1 ) ) ) [ t v x r j x u v z X z c c v v v u v v v v v c z X X X X X X X X z c v v v c c Y u } 1 ) ) ) | 1 - 1 ) | | { } } 1 [ } [ ] ? - - _ _ - - ] 1 ) ) 1 ) ) ( ) ) ) ) 1 { { { } } ( ) [ 1 f           Q $
+                                                                          Q   X n c X X X Y Y Y X X X X Y Y X z X X z c v v v v v v u u v v v c c c z z z z v c z z z z z z X X X X z X t _ ? { } } } { { } { ) 1 [ [ } { 1 1 ) ( ) } [ [ 1 ( ) ( | } { ) 1 ( { { x n r f f n c X X X z z c v v c c c c c c X X X X X X X X X X z c c c c z X c 1 { ) 1 ) ) | ] ? ( | \ | 1 } { { } [ [ ] ? - - - - _ - } [ [ ] ] ] [ 1 1 1 1 } } [ ? _ ~ ~ ? 1 1 [ 1 1 x X u         j t t C $
+                                                                          z   c u z X Y X Y U U Y X Y X Y Y X X X X X z c u v v v v u v v v v v c z X X X Y z z z z X z c X X X Y X z f + ~ } } } } { { 1 { { 1 1 [ [ } { { 1 ) ( ) } [ } } 1 ) ( ) { } ( ) 1 ) - \ u r j t r v z Y Y X X z c c z z c z z z X X X X X X X X X X z c c c c c Y \ [ ) ) ) ) ( { _ { ) | | ) { { { { } [ [ ? - _ + - - - } [ ] ] ? ? _ ? } { } } [ _ &lt; ! l ! ! &gt; ~ [ 1 ) \ \ \ f x c o               C t t t t \ $
+                                                                          z   z v z X Y Y U U Y X Y X Y Y Y Y X X X X z c u v v v v u u c v c v c c X X Y J U Y c c Y X c z X Y Y v \ _ ~ ? { } } { 1 1 1 1 1 ) 1 [ } } } } 1 ) ( 1 } [ [ } 1 ) ( ( ) } ) ) 1 ) ] } n x r t j u z X X X X z z z z z z z z X X X X X X X X X X X z c c z c Y r } ) ) ) ( | | ? ] ) ) | | 1 { { } } [ [ ] ? _ ~ - - - [ [ ] ] ? - - _ ] } { [ - &gt; I l &lt; ~ ~ &gt; &gt; - 1 | | ( ) 1 ) | 1 ( \ j x v x J $               $
+                                                                          c   Y X c X Y U Y Y Y Y Y X X Y Y Y X X X z X z v c v v v v v v c c v v X X Y Y X Y Y c z X z v c z v j ) ? ~ + [ { } { 1 1 1 1 1 1 1 1 [ } } } { } ) ( ) } } [ } 1 ) ( ( | } 1 ( 1 1 1 - / u x f f n z X Y X X X z z c z z X X X X X X X X X Y X X X z z z X Y r [ { ) ) ) ) | { - 1 1 ( \ | ) { { } [ [ ] ? _ + - ? ? [ [ ] ? ? _ _ _ _ } } ] + &lt; ~ } \ \ ( ( ) 1 | | ) 1 1 ) ) 1 ) | | \ t f t | | / r j j r j r c   (
+                                                                          #   X X c X Y U U U U Y Y Y Y Y U Y z z z z X X c c c c v v c z c v c z Y U X Y Y c c c z z c v c f { { 1 ? ~ _ 1 { { 1 1 1 ) ( ) 1 1 1 { { { { { } ) | 1 { } } } { 1 ) ( | { } ( 1 1 ) } [ r n f f n v X Y X X z z c z X z X X X X X X X X Y Y X X X X z X U n - [ ) ) ) ( ) | ] [ 1 1 \ | ( ) { } } [ ] ? - ~ _ - - ] ] ] ? - - + + + ? } ? + ] } 1 f \ - ] ) ) ) ) 1 1 { 1 ) | \ | ( ) | | | | | | / \ ( ) ) ) | t Y   L / O
+                                                                          )   X z v X Y Y Y U U Y Y Y U U U U z X X z X z c c v c c c c c c z z X Y Y Y U U z c c c z c v f - ] | 1 _ ~ ] ) 1 1 1 1 ) ( ( ) 1 ) ) { { { } } { ) ( 1 { { { { { 1 1 ( ( ) } 1 1 1 1 1 _ | x j t x v X Y Y X X X z z X X X X X X X X X X Y Y X X X X X Y Y } ] ( ) ) ( ( \ [ - [ ) \ / | ) 1 1 } [ [ ] ? - ~ ] ] ] ] ] ] ? - + _ _ - } ] + ] } } ( \ ~ ~ 1 ) 1 1 ) | | | \ \ | 1 { { ) ) ( ) 1 1 1 { { { } } } 1 / f c         t
+                                                                            Y v c c X Y U U U U U U U U U U J X X X c X X c v c c c c c v c z Y Y X c Y Y X z c c v c x | [ - { ( } _ _ } ) { ) ) ) ) ( | | | ( ) } } { } { { ) ( ) { { { { { { ) ( ) ) } } ) ) 1 ) [ [ f r / r v X Y U Y Y X X X X X X X Y X X Y X X Y Y X X X Y Y Y / ? ) ( ( ( | \ 1 - } 1 ( \ \ ( ) 1 { { [ [ ] ? _ &lt; ] [ ? ] ? - - + _ - _ ] ] ? [ [ ? ) \ } &lt; } 1 1 ( | | ( | ( ) } [ } } { 1 { 1 1 { { { 1 1 } } { 1 ) | / f x x v $     $
+                                                                            X r v c X U U U U U U U U U U Y U Y X X X z Y X c c c c c v v c c Y X z u z z c c c c v f ) 1 } [ 1 ( ? + - 1 1 1 ) ) ( ( ( | | | ( ( ) { } { { { ( ( 1 { { { { { { ) ) { { } [ ) ) 1 ) 1 ? 1 j f f u X U U U J X X Y X X X Y Y X Y Y X X Y Y Y X X Y U / ? ) ( ( ( | | ( - } 1 ( \ \ \ ( 1 1 } } [ [ ? - _ &lt; _ ] ] ? - - - _ - _ ? [ + [ } [ } | / _ ? [ } 1 { [ ] [ 1 { } [ [ } } [ } [ [ [ [ } 1 ) { [ } { 1 1 ) | | t \ \ j v     {
+                                                                        |   C r n u z Y Y Y U U U U U U U U U U Y X X X Y Y c c z z c c v v c Y c v n n v v v v n \ 1 ) ( { 1 | ( ? _ [ ) ) ) ) ( | | | ( | | ( ( | ) 1 { { { ) ) ) { } { { } } 1 1 { { 1 ? 1 ( ) 1 1 } [ \ t f v z U U J J Y U Y X X Y Y Y X Y z z Y Y Y Y U J U \ - 1 | ( ( | | | { ] { ) | \ / | ) 1 } } } [ [ ? - _ &lt; _ ] ] ? - - + _ - + [ _ _ { [ [ } | \ _ ? ] ] [ ? _ ? { { { } ] [ } } [ [ [ ] ] [ { ) ) [ [ [ { { { 1 ) ) ) ) | / j n U
+                                                                        Q   z j x n v X X X Y U Y U U U Y Y Y U Y X Y X X z c z X X z z c c c c v n n n n v v x ( } 1 ( 1 { ) | 1 - - ) ) ) ) ) ) | | ( | | | | ( ( ) 1 1 { } ) ) 1 1 { } { { { { { { 1 1 [ [ ( ) ) ) ) [ ) | / u X U J C J J U U Y Y Y Y Y Y Y Y U U U U Y Y c / ? { ( ( ) ( | \ ) ? [ 1 | \ \ / ( 1 1 { } } [ ] ? - _ ~ ~ ? ? - - _ _ ? + - ? &gt; ] { } [ [ ( ( _ ? ? ] ? - ] { { { } [ [ [ [ [ [ [ [ ] ? [ { ) [ ? [ } } { { { 1 1 1 ) ) ) ( t j j
+                                                                        C   x x j x c z X X Y Y Y Y Y Y Y X z X X z X X z z z z X z z c c n u v u v v u u v r 1 } 1 | ( { ) | ( } + ? | ) 1 1 ) | | | | | | | | ( ) { } { } } ( ) ) 1 { 1 1 { } } { 1 ) 1 1 } ) ) ) ) ) { [ ) | x Y C L C C J U U U U Y Y Y Y Y J J C C J c f } _ 1 | ( ( ( ( | ( ] ] 1 ( \ \ / \ 1 1 1 } } [ ] ] - - - ~ &lt; _ - - _ + - - + ? &gt; _ } [ [ [ [ | ( _ ] ? ? - - } { 1 1 ] ] [ ] ] [ [ [ ] ? ? [ 1 { ? ] [ [ [ } } [ } [ { ( ) ( ( ( \ \
+                                                                      U   n r x j r c z X Y Y Y Y Y Y Y X z z X z z X z X z z z z z c v v u n v u u v v u f ) } { 1 ( ( ) ( | ( ] _ ) ( ) ) ) ( | | | | | | | ( ) { } 1 1 } { ( ) ) 1 1 1 { { { } { { 1 ( | } 1 ) 1 ) ) ) [ } ) r Y C L L C U U U U U Y Y Y U U J C L Y u f } _ 1 | ( ( ( | ( | } ] { 1 ( / / \ | 1 1 } [ [ [ ? ? - - _ ~ + _ - - + + - ~ - ~ ! } } [ ] ] } \ ) + ? - - _ ] } 1 ) { ? ] ] ? [ [ [ ] ] _ - } { [ ? [ [ [ [ [ [ [ [ [ } ) 1 } - _ _ [
+                                                                      $ x j r r j r v X Y Y Y Y Y Y Y U Y X Y Y X z z c X z z z c z z c v c v v c c c x / 1 } { ) ( | ( ) ( | 1 + } | ) ) ) ) ( | | | ( | | | ( 1 } 1 1 1 { 1 ( ) ) 1 1 1 { } { { 1 1 ) | ( { } ( ) ) ) ) 1 [ [ / X J C L C U U Y Y Y Y Y Y Y J C L U n / } - 1 | ( ) ( ( ( ( 1 [ } } ) \ / \ | ( 1 { [ [ [ [ ] ? ? - _ _ _ _ - _ ~ ? - _ ] i - } [ [ [ ] 1 \ ( + _ + _ ? } { 1 1 } ? ] ] ] ] ] ] ] ? - - } { [ ] ] ] ] [ ] ? ] ] [ ] ? _ ~ ~ _ [ }
+                                                                    U   / j j x x x u c z Y Y Y Y Y U U U U U U Y Y Y z z v c c v v c c u u v n n j ( } 1 1 { ) ( \ \ ( ) | ( [ ] | ( ( ) ) ) ) ( | | | \ \ ( { { ( ) ) 1 } 1 | ( ( 1 1 1 } { 1 1 ) ( | ) ) ) } { ( ) ) ) ) { [ ) n Y L L C U U Y Y X X X c X X z v n | ? _ ) | ( | ( ( ( | ) [ 1 } 1 | / / | ( 1 } } } [ [ [ ? ] [ - - - _ _ _ + _ ? + ? &gt; ~ { [ [ [ ? [ 1 | | ~ &lt; ~ ? [ [ 1 ) 1 [ ] ] ] ] ] ] ] ] ? - ? { { ] ] ] ] ? ] ] ? ? ] ? _ ~ &lt; - ] [ [ [
+                                                                  Q   f f r x n n u v v z X X Y U U U U U Y J J Y Y Y X X c v v n x n x x x x n \ [ { 1 ( 1 } ) | | | ( | | ) 1 ) ( ) ( ) ) ) ( ( | | | ) ( 1 } { ) 1 1 1 } ) | ) ( ) 1 1 { 1 ) ) ) ) ( 1 ) ( 1 } ( ( ) ) ( ( } [ / z C L C C J Y Y X z z v v v n j / ] - ) | ) ) ( | ( | ) [ { { } ) \ \ | ) 1 } } } [ } [ [ ] ] [ - _ - _ + _ _ - _ - _ l ] } [ [ [ ] ] ) ( | &lt; &lt; ? ] ] [ 1 ) { ] ? ] ] ] ] ] ] ? ? _ ? [ [ ] ] ? ? ? ? ? _ ? ] - &lt; ~ - ] ] - ? ?
+                                                                    r \ f r x n n u c X Y Y U Y Y U U U Y Y U C C J Y X X c v u u u n n x n v f _ } ( ) ( 1 { ( | | | | \ \ 1 { ) ( ( ( ) ) ) ( ( ( | | ( ) { 1 ) ) 1 1 1 1 ( | ( ( ( ) 1 1 1 ) ) ) ) ) ( ( ( ( { { ( ) ) ) ( ( } ) x Y J C C U Y z c v n n x x r / } ] ( | ( ( ( ( ( ( ( [ 1 1 } { | / | ) { } [ } } } [ [ [ [ [ ] - _ _ _ _ + - - ~ - &gt; _ } [ [ [ [ [ ] 1 ( \ &gt; ~ ? _ - [ ) ( { ] ? ] ] ] [ ] ] ? - _ ] [ [ ] ? ? ? ? ? - _ ? - &lt; + ? ? ? - ? ? ?
+                                                                Q   t / j n u c z z X U U C L L L C C C J J L L L L L J U X z X X Y X z z X j [ ~ ) ( ) ( 1 1 ( | | | / / | 1 } ) | ( ) ( 1 ) ( ( ) ( ) 1 ) 1 ) ) 1 1 1 1 1 ( | | | ( 1 { { 1 ) ( ( ( ( ( ) ( ( ) { ) ( ) ) ) ) ) 1 \ n X Y Y Y X c u n x j j f | [ } ( ( ( ( ( ( ( ( ( [ ) | } [ 1 / \ 1 } } { } } } } } } } [ ] ] ? - _ _ + _ ? + _ &lt; ~ { [ [ ] [ [ } [ ) ( / &lt; ~ - &lt; + [ ) ( } ] ] ] [ [ [ ] - ? ? _ ] } [ ] ? - ? - _ _ - _ &lt; + ? - - - - - ? ]
+                                                              L   \ | / r n c z Y U U Y J C C C C L L C L Q Q L L C J J U U J U U Y Y Y Y u ) } - 1 | ( ( { { ( | \ | \ \ ( { 1 ) 1 ( \ ( 1 ) ( ) ( ( 1 { 1 ) ) ) 1 1 1 1 { | | | | ) } { { 1 ) | | ( ( ) 1 ) ) ( ) 1 ( ( ( ) ) ) ) ) / n z c c z n r j j j f | ] } ( ( ( ( ( ( ( | | } { | ) [ } ( / ( } { } } { } { 1 { { { } ] ] ? - _ _ + - - + - i [ { [ [ [ } } } } 1 1 | ~ &lt; + &gt; + [ 1 ( } ] ] [ [ [ [ ] ? ? - _ ] [ [ [ ? - - _ + ? - &lt; _ - - _ - - - _ ] [
+                                                            )   r ) ( f n c z X X X Y U J C C C C L C J L L L L C J U U U J J U U U Y U c ( ( { - 1 | | ( 1 } ) ( | ( \ \ ( { 1 1 ( \ \ ( 1 1 ( ( ( ) ) 1 ) ) ( ) 1 1 ) 1 } ( | | | 1 ) ) { 1 ) | | ( ) ) ) ( ) ( ) } ) | ) ) ) ) ) ) | t x n u u x f f t \ ( } } ( ( ( ( ( ( ( | ( [ } \ \ 1 ? 1 \ \ ) 1 1 1 1 1 1 1 1 { { { } [ ] ? - ~ &lt; + ? + - &gt; _ ) { [ ] [ } } { ) 1 1 ( ~ &gt; &lt; &gt; _ } ( ( ] [ [ [ [ [ [ ] ? ? - _ [ [ [ ] ? ? _ _ - ? + _ ? - - - - - - - ? ?
+                                                            L   / | / x u z U Y Y Y U U J C C C C C C C C L C C C J X U C J J U U U Y v ( { | } ? 1 ( | ( ) ) ) ( | ) \ \ ) [ 1 ( | | | ( ) 1 ( ( ) ) ) 1 ) ) ) 1 1 1 1 1 1 \ | | ( ) ( | | | \ \ ( 1 | | | ( ) ) | ) } ) ( ) ) ) ) ) ) | t f f j j f / ( { } 1 | | | ( ( ( ( ( ) [ { \ \ | [ [ ( / | { ) 1 ) ) 1 1 1 { 1 ) { [ ] [ ? - ~ &lt; ? - _ ~ i { 1 { ] ? [ } { { ) 1 1 ( - &gt; i ! _ 1 ( ) ] ] [ [ [ } [ ? ? ? ? - ] ] ] - ? ? ~ + - ~ + - - _ _ _ _ - ? ] ? ?
+                                                          L   \ ( \ x n u X U U Y U U C C C C C C C C C C C C C C U U J J U U U U Y Y f [ ) | 1 ] ) ( | ) ( ( ( ( ) ) / \ ) } | ( | | | ) ) ) ( ( ) ( ) 1 ) ( 1 1 ) 1 1 { 1 \ | | ( | | \ \ | | | | ( \ | | | ) ) ( | ( { ( ) ) ) ( ( ) 1 ) / j f | ) } } } 1 | | | ( | | ( | | [ 1 \ / \ ) ? } ( / ) 1 1 1 ) ) 1 1 1 ) ( ) } [ [ ] ? ~ &lt; _ ? _ + l _ ) 1 [ ] [ [ } 1 1 ) ) ( ) } - &gt; ! ? 1 ) 1 ] ] [ } } [ ? - ? ? - - ] [ ? ? ? _ &lt; - _ + ? - _ _ _ _ - - ? ? - ?
+                                                        )   r 1 ) f x n z Y J C U U C C C C C C C C J C C C C L C J U U U Y U U Y Y c ( 1 ( \ ) ] ) ( | ( ( ( ( ) ) ( / \ ) 1 ( ( ( \ \ ( ) ) ) ( ( ( ( ) ( ( ) 1 ) ) ) 1 { | | | | | \ / \ \ | | \ | | | | \ | ) ( | | ) [ ) ( ) ( ( ( ( ) 1 ) 1 { { 1 ) ( ( ( ( ( | | | | ( ] } \ | \ \ } ? 1 \ / ( ) ) ) ( ( ) ) ) ) ( 1 [ [ [ [ ? &lt; &lt; ? - _ &gt; &lt; { ) ) } ] [ [ { 1 ) ) ) ( ) \ 1 _ l [ ) 1 1 } [ } } } [ ] - ? ? - - ] [ ? ? ? ~ _ _ + - - - _ + _ - - - - _ - ]
+                                                        L   | ) \ x v z U U J C J J C C C C C C C C C C J Y Y J J U U U Y X Y Y Y c | } ) ( | ( [ 1 ) ( ( ( | ( ( \ \ / | 1 { | | | | | ( ) ) ( ( ( ( ( ) | ) ) ( | | | 1 ) | ( ( ) \ / / | | | \ \ | | | | | ( ) ( | | \ ( ] ) ( ( ( ( ( ) ) { 1 ) ( | | | | | | | ( | / ( ] { | | | | 1 ? [ ( / \ ( ) ( ( ( | ( ) 1 ) ) 1 } [ ] ] _ &gt; _ ? _ ~ &gt; { ) 1 { [ ] [ [ } { ( | 1 1 ( | ( ~ ! } { 1 { } [ { { } [ - ? ? ? ? - ] ] ? ] + ~ - ~ _ - _ _ + ~ _ - - - - - ] ]
+                                                      C   / 1 ( j v c X J J C C J J C C C C C C C J C C J U Y U U U U J Y z Y X X j - [ ) ( | ( [ { ) ( ( ( | ( | / \ \ | 1 1 ( ) | | \ ( 1 ) ( | ( ( ( ( ( ( ) ( | | | { 1 | ( ( ( | | ) ( | \ \ \ | | | | ( ) ) | | | | \ { [ ( ( ( ) ( ( ( ) | ( 1 ( | | | | | | ( | 1 [ ) \ | \ \ | [ ? { | / | ( ) ( | | ( | | ) ) 1 { [ [ ] - ~ &gt; - _ _ i - ( ) 1 { ] ? [ { 1 ) | | ( ( | | { i &lt; { 1 ) 1 [ [ { 1 } ? - ? ? ? ] _ ? ? ] ? &gt; + _ _ _ + _ + ~ _ - _ - - - ] [ ?
+                                                      J t 1 ) / n c X Y U J C C C C C C C L C J C C C C J U Y Y Y U U U X X U Y u } - [ 1 | | | [ { ) ( ) ( ( | / \ / \ | 1 ) ) ) | \ | ) 1 ) ( | | ) ) \ ( ( ( | ( ( ( { ( | ( ( ( | | | | \ \ \ \ | ( ( ( ( ( | | | | ( 1 ) } 1 \ ( ( ( ( ( ) ( | ) ) ( | | | | | | { - ) \ \ \ \ \ ) ? [ ) | \ | ( ( | | | | ( ( ( ) 1 } [ ] ? _ i + [ + &lt; &lt; 1 ( ( ( { ? ? } { ) ( | \ | 1 | \ [ I + { ) ) 1 { 1 { 1 [ - - - - ? [ _ - ? [ + &gt; _ + _ _ + + ~ + - - _ - - ? ? - -
+                                                    z   1 1 \ r v z Y U J C C C C C C C C J J C L L C C J U U U U U J Y z z v x { } { ] { | | \ } { ) ( ( ( ( | / / / \ \ { { ) ) | | | ) 1 ) ( \ | | \ \ | | | | / \ | 1 ( | ( ) ) ( | | | | \ \ \ \ | | | | | ( | | | | ) ) ( } } ) ( ( ( ( ) ( | | ( ) ( | | \ | { } ) \ \ | \ \ ) [ [ 1 ( \ \ \ | | | | | | ( ) ( ( } } [ ? _ &lt; &lt; ? _ ~ ~ } ( ( ( ) } - [ { { 1 | \ | \ | 1 | ] l - { { 1 1 { 1 ) ) [ - - - ? [ { ~ _ ? ? &lt; ~ _ _ _ + ~ &lt; _ ? - _ - ? ? _ + - ?
+                                                  Q   / ) ( r n z X U J C C C J J C C C J C C C L L C C Y Y J J U J Y X X c j ] _ { ( { [ ) ( \ ) { 1 ( | ( ( | \ \ \ \ \ { 1 | | ) | / | ) ) ( | | | | \ | | \ \ \ / / ) ( ( ) 1 ) | | | | | | \ \ | | | | ( ( ( | ( ( ( | | | | 1 [ ) ( | ( ) ) | | \ ( | \ \ ) [ 1 \ \ \ \ \ \ ( [ [ } ) | \ \ \ | | | | | | | ( ( ) [ [ ] - &lt; i - _ ~ _ [ ) ( | ( 1 ] ? [ } 1 ) | \ \ / / 1 ( _ ! ] } 1 ) ) 1 1 ) 1 ? - - - ? [ } i _ ] _ &lt; + + _ + ~ &lt; ~ _ _ _ _ - ? - + _ ? -
+                                                    j \ ) / n v z X U J C C C C J C C C C C C C C C C J U J J J U U X X z n [ ~ { { ) ) } { ( | ) } 1 ( | ( | \ \ \ \ \ | { ( | | ( | \ | ) 1 ( | | | \ \ | \ \ \ \ | ) 1 | | ( ( | | | | | | | | | | | | | ( ( ( | | ( ) ) | | | \ 1 } | | | 1 ( | | \ / | ) { } ) \ \ \ \ \ \ | 1 [ } 1 ) ( \ \ \ | | ( ( | | | ( ( 1 [ ] - + i ~ - ~ _ ? ) | | | | } [ [ [ } ) ( | \ \ \ \ ) ) &lt; &lt; [ { ) ) ) ) ) ) } ? ? - ? ? } [ l _ ? &lt; + ~ _ _ ~ &lt; ~ + _ + _ - ? ? _ - - _ _
+                                                0   \ 1 \ x v c X Y U C C C C C C C C C C C C C C C J U U J J U U Y z c n 1 &lt; ? 1 1 1 ( ) { ) | ( } ) | | ) | \ \ \ \ / | { ( | ( ) | \ | ) ) ) | | \ \ \ | | | | | | | ) \ | | \ | | ( | ( ( \ \ | | | | | | | | | | ( ( ) | \ ( ( | 1 1 ( \ ( | \ \ ( 1 } } 1 | | | \ \ \ \ | ) [ } { ) | | \ \ \ | ( ( ( ( ( | | ( 1 ] ? _ &lt; ~ ? ~ + ] } ( | | | ) [ ] [ [ } ) | \ \ / / / ( } &gt; + { 1 1 ) ) ) ) 1 [ - - ? ? [ { ? l ? - ~ + _ _ + ~ &lt; + + _ _ _ ? - + + - _ _ _
+                                                  j ) \ r u z z Y U J C C C C C C C C C C J J C C C J U U J U U Y X v n | - ? } 1 ) ) ) | ) 1 ( ( { ) ) ( ( | | \ \ / \ ( 1 ( ( ( ( ( | | ) ) ) ( | \ \ \ | | | | | \ | ( \ | | | | | | | ( | | | | | | | | | | ( | | ( ( ( | \ | ( ( | ( 1 ( | | ) 1 { ) ( | | | | | | \ \ | ( { } } 1 ( | \ \ \ | | | ( ( | | ( ( ) { ] - ~ &lt; - _ + ] } ) ( ( ( ( 1 } ] ] [ { ( | \ \ / \ | { - + ? { { 1 ) ( ) ) { ] ? ? - ? } } _ i - _ _ + _ + ~ ~ ~ + + _ - - - _ ~ _ _ _ _ _</pre>
+        </figure>
+      </section>
+    </main>
+  </body>
+</html>
