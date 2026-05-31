@@ -34,6 +34,7 @@
         font-family: var(--text-font);
         font-size: 21px;
         line-height: 1.35;
+        overflow-x: hidden;
       }
 
       a {
@@ -188,27 +189,42 @@
 
       @media (max-width: 700px) {
         :root {
+          --page-pad-x: clamp(18px, 6vw, 28px);
+          --page-pad-top: 22px;
           --icon-box: 34px;
           --icon-size: 28px;
-          --ascii-size: 2px;
+          --ascii-size: 1.75px;
         }
 
         main {
-          padding-bottom: 120px;
+          min-height: auto;
+          padding-bottom: 42px;
         }
 
         .site-header {
-          align-items: flex-start;
-          gap: 18px;
-          margin-bottom: 24px;
+          display: flex;
+          flex-direction: column;
+          gap: 16px;
+          margin-bottom: 22px;
           padding-right: 0;
         }
 
+        .site-title {
+          max-width: 9ch;
+          font-size: clamp(40px, 14vw, 58px);
+          line-height: 0.95;
+        }
+
         .social-links {
-          gap: 12px;
           position: static;
+          gap: 10px;
           justify-content: flex-start;
-          margin-bottom: 18px;
+          order: -1;
+          margin-left: -4px;
+        }
+
+        .content {
+          max-width: 34rem;
         }
 
         body,
@@ -216,7 +232,12 @@
         .section h2,
         .entry,
         .media-list {
-          font-size: 18px;
+          font-size: 17px;
+        }
+
+        .content p {
+          margin-bottom: 16px;
+          line-height: 1.45;
         }
 
         .entry {
@@ -225,7 +246,45 @@
         }
 
         .gallery {
-          right: 0;
+          position: relative;
+          right: auto;
+          bottom: auto;
+          width: calc(100vw - (var(--page-pad-x) * 2));
+          height: min(42vh, 260px);
+          margin-top: 34px;
+          overflow: hidden;
+          border-top: 1px solid color-mix(in srgb, var(--fg) 18%, transparent);
+          border-bottom: 1px solid color-mix(in srgb, var(--fg) 18%, transparent);
+          opacity: 0.72;
+        }
+
+        .ascii-piece {
+          position: absolute;
+          right: -28px;
+          bottom: -8px;
+        }
+      }
+
+      @media (max-width: 420px) {
+        :root {
+          --ascii-size: 1.55px;
+        }
+
+        .site-title {
+          font-size: clamp(38px, 15vw, 52px);
+        }
+
+        body,
+        .content p,
+        .section h2,
+        .entry,
+        .media-list {
+          font-size: 16px;
+        }
+
+        .gallery {
+          height: 220px;
+          margin-top: 28px;
         }
       }
     </style>
